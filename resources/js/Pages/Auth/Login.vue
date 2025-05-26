@@ -60,24 +60,39 @@
         Sign In
       </a-button>
 
-        <!-- Social Login -->
+    <!-- Social Login -->
     <div class="mt-6 text-center">
         <a-divider class="!text-gray-400">
             <span class="text-sm">Or continue with</span>
         </a-divider>
-        <div class="flex justify-center space-x-4 mt-4">
-            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
-                <img :src="'/assets/image/auth/google.png'" alt="Google" class="h-6 w-6 group-hover:opacity-100 opacity-80 transition duration-300" />
-            </a>
-            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
-                <img :src="'/assets/image/auth/facebook.png'" alt="Facebook" class="h-7 w-7 group-hover:opacity-100 opacity-80 transition duration-300" />
-            </a>
-            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
-                <img :src="'/assets/image/auth/github.png'" alt="GitHub" class="h-6 w-6 group-hover:opacity-100 opacity-80 transition duration-300" />
-            </a>
-            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
-                <img :src="'/assets/image/auth/linkedin.png'" alt="LinkedIn" class="h-6 w-6 group-hover:opacity-100 opacity-80 transition duration-300" />
-            </a>
+        <div class="flex justify-center space-x-6 mt-4">
+            <Link
+              @click="socialLogin('google')"
+              class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+            >
+              <img src="/assets/image/auth/google.png" alt="Google" class="h-6 w-6" />
+            </Link>
+
+            <Link
+              @click="socialLogin('facebook')"
+              class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+            >
+              <img src="/assets/image/auth/facebook.png" alt="Facebook" class="h-6 w-6" />
+            </Link>
+
+            <Link
+              @click="socialLogin('github')"
+              class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+            >
+              <img src="/assets/image/auth/github.png" alt="GitHub" class="h-6 w-6" />
+          </Link>
+
+            <Link
+              @click="socialLogin('linkedin')"
+              class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+            >
+              <img src="/assets/image/auth/linkedin.png" alt="Linkedin" class="h-6 w-6" />
+          </Link>
         </div>
     </div>
       <!-- Register Link -->
@@ -91,9 +106,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+
+const loading = ref( false );
+
+function socialLogin(provider) {
+  loading.value = true
+  window.location.href = route('social.login', provider)
+}
 
 defineProps({
   errors: Object,
