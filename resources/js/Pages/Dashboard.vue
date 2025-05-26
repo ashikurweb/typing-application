@@ -1,6 +1,6 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AuthenticatedLayout from '@/Layouts/DashboardLayout.vue';
 import FlashBanner from '@/Components/FlashBanner.vue';
 </script>
 
