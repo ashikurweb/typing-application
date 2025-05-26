@@ -53,7 +53,7 @@ function closeBanner() {
     <div v-if="show" class="fixed top-3 right-5 z-50 w-full max-w-sm pointer-events-auto">
       <div :class="bannerClasses">
         <!-- Spinner / Icon -->
-        <div class="flex-shrink-0 relative h-6 w-6">
+        <div class="shrink-0 relative h-6 w-6">
           <svg
             v-if="iconSpinning"
             class="h-6 w-6"
@@ -96,7 +96,7 @@ function closeBanner() {
         <!-- Close button -->
         <button
           @click="closeBanner"
-          class="ml-3 -mt-1 -mr-1 p-1 rounded-full focus:outline-none transition-opacity duration-200 hover:opacity-70"
+          class="ml-3 -mt-1 -mr-1 p-1 rounded-full focus:outline-hidden transition-opacity duration-200 hover:opacity-70"
           :class="type==='success'
             ? 'text-green-500 hover:bg-green-100 dark:text-green-600'
             : 'text-red-500 hover:bg-red-100  dark:text-red-600'"
