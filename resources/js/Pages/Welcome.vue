@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import FlashBanner from '@/Components/FlashBanner.vue';
 
 defineProps({
     canLogin: {
@@ -28,6 +29,7 @@ function handleImageError() {
 
 <template>
     <Head title="Welcome" />
+    <FlashBanner />
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <img
             id="background"

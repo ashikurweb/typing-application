@@ -1,10 +1,12 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import FlashBanner from '@/Components/FlashBanner.vue';
 </script>
 
 <template>
     <Head title="Dashboard" />
+    <FlashBanner />
     <AuthenticatedLayout>
         <template #header>
             <h2
