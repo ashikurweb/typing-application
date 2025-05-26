@@ -101,20 +101,10 @@
         Create Account
       </a-button>
 
-      <!-- Divider -->
-      <a-divider class="!text-gray-400">
-        <span class="text-sm">Already have an account?</span>
-      </a-divider>
-
       <!-- Login Link -->
-      <Link href="/login">
-        <a-button
-          size="large"
-          block
-          class="!rounded-xl !h-12 !font-semibold !border-2 !border-gray-200 hover:!border-blue-300 !transition-all"
-        >
-          Sign In
-        </a-button>
+      <Link href="/login" class="mt-4 block text-center text-sm text-gray-600">
+        Already have an account? 
+        <span class="font-semibold hover:text-blue-600 transition-colors hover:underline">Sign In</span>
       </Link>
     </form>
   </AuthenticatedLayout>

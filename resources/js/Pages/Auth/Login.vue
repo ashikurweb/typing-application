@@ -60,20 +60,30 @@
         Sign In
       </a-button>
 
-      <!-- Divider -->
-      <a-divider class="!text-gray-400">
-        <span class="text-sm">New to Typing App?</span>
-      </a-divider>
-
+        <!-- Social Login -->
+    <div class="mt-6 text-center">
+        <a-divider class="!text-gray-400">
+            <span class="text-sm">Or continue with</span>
+        </a-divider>
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                <img :src="'/assets/image/auth/google.png'" alt="Google" class="h-6 w-6 group-hover:opacity-100 opacity-80 transition duration-300" />
+            </a>
+            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                <img :src="'/assets/image/auth/facebook.png'" alt="Facebook" class="h-7 w-7 group-hover:opacity-100 opacity-80 transition duration-300" />
+            </a>
+            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                <img :src="'/assets/image/auth/github.png'" alt="GitHub" class="h-6 w-6 group-hover:opacity-100 opacity-80 transition duration-300" />
+            </a>
+            <a href="#" class="group w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                <img :src="'/assets/image/auth/linkedin.png'" alt="LinkedIn" class="h-6 w-6 group-hover:opacity-100 opacity-80 transition duration-300" />
+            </a>
+        </div>
+    </div>
       <!-- Register Link -->
-      <Link href="/register">
-        <a-button
-          size="large"
-          block
-          class="!rounded-xl !h-12 !font-semibold !border-2 !border-gray-200 hover:!border-blue-300 !transition-all"
-        >
-          Create Account
-        </a-button>
+      <Link href="/register" class="mt-4 block text-center text-sm text-gray-600">
+        Don't have an account? 
+        <span class="font-semibold hover:text-blue-600 transition-colors hover:underline">Sign Up</span>
       </Link>
     </form>
   </AuthenticatedLayout>
