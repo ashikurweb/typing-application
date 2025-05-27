@@ -9,7 +9,7 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 import VueApexCharts from "vue3-apexcharts";
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Modern Application';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

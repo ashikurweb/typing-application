@@ -1,5 +1,5 @@
 <template>
-  <header class="abosolute bg-gradient-to-br sticky top-0 z-50">
+  <header class="abosolute shadow-md bg-gradient-to-br sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo Section -->
@@ -18,7 +18,7 @@
         <nav class="hidden md:flex items-center space-x-8">
           <Link 
             :href="route('home')" 
-            class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1"
+            class="text-blue-400 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1"
           >
             <HomeOutlined class="text-lg" />
             <span>Home</span>
@@ -26,7 +26,7 @@
           
           <Link 
             href="#" 
-            class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1"
+            class="text-blue-400 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1"
           >
             <InfoCircleOutlined class="text-lg" />
             <span>About</span>
@@ -34,42 +34,12 @@
           
           <Link 
             href="#" 
-            class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1"
+            class="text-blue-400 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1"
           >
             <ContactsOutlined class="text-lg" />
             <span>Contact</span>
           </Link>
 
-          <!-- Dropdown Menu -->
-          <a-dropdown :trigger="['hover']" placement="bottomRight">
-            <a class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1 cursor-pointer">
-              <AppstoreOutlined class="text-lg" />
-              <span>More</span>
-              <DownOutlined class="text-xs" />
-            </a>
-            <template #overlay>
-              <a-menu class="min-w-48">
-                <a-menu-item key="features">
-                  <Link href="#" class="flex items-center space-x-2">
-                    <StarOutlined />
-                    <span>Features</span>
-                  </Link>
-                </a-menu-item>
-                <a-menu-item key="pricing">
-                  <Link href="#" class="flex items-center space-x-2">
-                    <DollarOutlined />
-                    <span>Pricing</span>
-                  </Link>
-                </a-menu-item>
-                <a-menu-item key="help">
-                  <Link href="#" class="flex items-center space-x-2">
-                    <QuestionCircleOutlined />
-                    <span>Help Center</span>
-                  </Link>
-                </a-menu-item>
-              </a-menu>
-            </template>
-          </a-dropdown>
         </nav>
 
         <!-- User Section -->
@@ -78,7 +48,7 @@
           <div v-if="!isLoggedIn" class="hidden md:flex items-center space-x-3">
             <Link 
               :href="route('login')"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+              class="text-blue-400 hover:text-blue-600 font-medium transition-colors duration-200"
             >
               Login
             </Link>
@@ -153,7 +123,7 @@
       >
         <Link 
           :href="route('home')" 
-          class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+          class="flex items-center space-x-3 px-4 py-3 text-blue-400 hover:bg-gray-50 rounded-lg transition-colors duration-200"
           @click="mobileMenuOpen = false"
         >
           <HomeOutlined />
@@ -162,7 +132,7 @@
         
         <Link 
           href="#" 
-          class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+          class="flex items-center space-x-3 px-4 py-3 text-blue-400 hover:bg-gray-50 rounded-lg transition-colors duration-200"
           @click="mobileMenuOpen = false"
         >
           <InfoCircleOutlined />
@@ -171,42 +141,19 @@
         
         <Link 
           href="#" 
-          class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+          class="flex items-center space-x-3 px-4 py-3 text-blue-400 hover:bg-gray-50 rounded-lg transition-colors duration-200"
           @click="mobileMenuOpen = false"
         >
           <ContactsOutlined />
           <span>Contact</span>
         </Link>
 
-        <div class="px-4 py-2">
-          <div class="border-t border-gray-200 my-2"></div>
-          <div class="text-sm font-medium text-gray-500 mb-2">More</div>
-          <div class="space-y-1 ml-4">
-            <Link 
-              href="#" 
-              class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-              @click="mobileMenuOpen = false"
-            >
-              <StarOutlined />
-              <span>Features</span>
-            </Link>
-            <Link 
-              href="#" 
-              class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-              @click="mobileMenuOpen = false"
-            >
-              <DollarOutlined />
-              <span>Pricing</span>
-            </Link>
-          </div>
-        </div>
-
         <!-- Mobile User Section -->
         <div v-if="!isLoggedIn" class="px-4 py-2 space-y-2">
           <div class="border-t border-gray-200 my-2"></div>
           <Link 
             :href="route('login')"
-            class="block w-full text-center py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+            class="block w-full text-center py-2 text-blue-400 hover:bg-gray-50 rounded-lg transition-colors duration-200"
             @click="mobileMenuOpen = false"
           >
             Login
