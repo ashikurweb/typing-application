@@ -86,13 +86,13 @@
 
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-          <router-link 
-            to="/register"
+          <Link 
+            :href="route('register')"
             class="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full text-white font-semibold text-lg shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
           >
             <span class="relative z-10">Start Your Journey</span>
             <div class="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </router-link>
+          </Link>
           
           <button 
             @click="playDemo"
@@ -151,7 +151,6 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { router } from '@inertiajs/vue3'
 
 // Typing animation words
 const words = ['Typing Speed', 'Accuracy', 'Productivity', 'Efficiency', 'Skills']
