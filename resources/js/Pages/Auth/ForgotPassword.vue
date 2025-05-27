@@ -1,68 +1,72 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import GuestLayout from '@/Layouts/GuestLayout.vue'
+import { Head, useForm, Link } from '@inertiajs/vue3'
+import { MailOutlined } from '@ant-design/icons-vue'
+import FlashBanner from '@/Components/FlashBanner.vue'
+import { ref } from 'vue'
 
 defineProps({
-    status: {
-        type: String,
-    },
-});
+  status: String,
+  errors: Object,
+})
 
 const form = useForm({
-    email: '',
-});
+  email: '',
+})
 
 const submit = () => {
-    form.post(route('password.email'));
-};
+  form.post(route('password.email'))
+}
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Forgot Password" />
+  <Head title="Forgot Password" />
+  <FlashBanner />
+  <GuestLayout title="Forgot Password">
+    <div v-if="status" class="mb-4 text-green-600 font-medium text-sm">
+      {{ status }}
+    </div>
 
-        <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email
-            address and we will email you a password reset link that will allow
-            you to choose a new one.
-        </div>
-
-        <div
-            v-if="status"
-            class="mb-4 text-sm font-medium text-green-600"
+    <form @submit.prevent="submit" class="space-y-6 max-w-xl">
+      <div>
+        <a-input
+          v-model:value="form.email"
+          type="email"
+          placeholder="Email address"
+          size="large"
+          :status="form.errors.email ? 'error' : ''"
+          class="rounded-xl"
+          autocomplete="username"
+          autofocus
         >
-            {{ status }}
+          <template #prefix>
+            <MailOutlined class="text-gray-400" />
+          </template>
+        </a-input>
+        <div v-if="form.errors.email" class="mt-1 text-sm text-red-500">
+          {{ form.errors.email }}
         </div>
+      </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
+      <a-button
+        type="primary"
+        html-type="submit"
+        size="large"
+        :loading="form.processing"
+        block
+        class="!bg-gradient-to-r !from-blue-500 !to-purple-600 !border-none !rounded-xl !h-12 !text-white !font-semibold !shadow-lg hover:!shadow-xl !transition-all"
+      >
+        Send Password Reset Link
+      </a-button>
 
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <PrimaryButton
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Email Password Reset Link
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+      <a-divider class="!text-gray-400">
+            <span class="text-sm">Or continue with</span>
+      </a-divider>
+      <!-- Login Link -->
+      <Link href="/login" class="mt-4 block text-center text-sm text-gray-600">
+        Back to login? 
+        <span class="font-semibold hover:text-blue-600 transition-colors hover:underline">Sign In</span>
+      </Link>
+    </form>
+  </GuestLayout>
 </template>

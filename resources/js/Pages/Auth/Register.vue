@@ -1,5 +1,6 @@
 <template>
-  <AuthenticatedLayout title="Create an Account">
+  <Head title="Register" />
+  <GuestLayout title="Create an Account">
     <form @submit.prevent="submit" class="space-y-6">
       <!-- Name Field -->
       <div>
@@ -107,13 +108,13 @@
         <span class="font-semibold hover:text-blue-600 transition-colors hover:underline">Sign In</span>
       </Link>
     </form>
-  </AuthenticatedLayout>
+  </GuestLayout>
 </template>
 
 <script setup>
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm, Link, Head } from '@inertiajs/vue3'
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons-vue'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import GuestLayout from '@/Layouts/GuestLayout.vue'
 
 defineProps({
   errors: Object,
