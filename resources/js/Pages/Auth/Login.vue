@@ -98,7 +98,7 @@
       <!-- Register Link -->
       <Link href="/register" class="mt-4 block text-center text-sm text-gray-600">
         Don't have an account? 
-        <span class="font-semibold hover:text-blue-600 transition-colors hover:underline">Sign Up</span>
+        <span class="font-semibold hover:text-blue-600 transition-colors hover:underline">Sign In</span>
       </Link>
     </form>
   </AuthenticatedLayout>
@@ -106,7 +106,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useForm } from '@inertiajs/vue3'
+import { useForm, Link } from '@inertiajs/vue3'
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 
