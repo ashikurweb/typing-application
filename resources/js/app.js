@@ -1,9 +1,9 @@
 import '../css/app.css';
 import './bootstrap';
 
-import { createInertiaApp, Link } from '@inertiajs/vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, h } from 'vue';
+import { createInertiaApp, Head, Link } from '@inertiajs/vue3';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
@@ -24,9 +24,14 @@ createInertiaApp({
             .use(ZiggyVue)
             .use(Antd)
             .use(VueApexCharts)
+            .component('Head', Head)
+            .component('Link', Link)
             .mount(el);
     },
-    progress: {
-        color: '#4B5563',
-    },
+     progress: {
+    delay: 250,
+    color: '#F13',
+    includeCSS: true,
+    showSpinner: false,
+  },
 });

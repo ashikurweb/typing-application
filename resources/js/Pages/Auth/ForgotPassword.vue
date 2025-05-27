@@ -1,6 +1,6 @@
 <script setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue'
-import { Head, useForm, Link } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { MailOutlined } from '@ant-design/icons-vue'
 import FlashBanner from '@/Components/FlashBanner.vue'
 import { ref } from 'vue'

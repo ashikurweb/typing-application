@@ -1,3 +1,27 @@
+<script setup>
+import { useForm } from '@inertiajs/vue3'
+import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons-vue'
+import GuestLayout from '@/Layouts/GuestLayout.vue'
+
+defineProps({
+  errors: Object,
+})
+
+const form = useForm({
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+  terms: false,
+})
+
+const submit = () => {
+  form.post('/register', {
+    onFinish: () => form.reset('password', 'password_confirmation'),
+  })
+}
+</script>
+
 <template>
   <Head title="Register" />
   <GuestLayout title="Create an Account">
@@ -111,26 +135,3 @@
   </GuestLayout>
 </template>
 
-<script setup>
-import { useForm, Link, Head } from '@inertiajs/vue3'
-import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons-vue'
-import GuestLayout from '@/Layouts/GuestLayout.vue'
-
-defineProps({
-  errors: Object,
-})
-
-const form = useForm({
-  name: '',
-  email: '',
-  password: '',
-  password_confirmation: '',
-  terms: false,
-})
-
-const submit = () => {
-  form.post('/register', {
-    onFinish: () => form.reset('password', 'password_confirmation'),
-  })
-}
-</script>

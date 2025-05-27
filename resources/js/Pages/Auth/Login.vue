@@ -1,3 +1,34 @@
+<script setup>
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
+import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
+import AuthenticatedLayout from '@/Layouts/GuestLayout.vue'
+
+const loading = ref( false );
+
+function socialLogin(provider) {
+  loading.value = true
+  window.location.href = route('social.login', provider)
+}
+
+defineProps({
+  errors: Object,
+  status: String,
+})
+
+const form = useForm({
+  email: '',
+  password: '',
+  remember: false,
+})
+
+const submit = () => {
+  form.post('/login', {
+    onFinish: () => form.reset('password'),
+  })
+}
+</script>
+
 <template>
   <Head title="Login" />
   <AuthenticatedLayout title="Sign In" subtitle="Welcome back! Please sign in to your account">
@@ -105,33 +136,3 @@
   </AuthenticatedLayout>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import { useForm, Link, Head } from '@inertiajs/vue3'
-import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
-import AuthenticatedLayout from '@/Layouts/GuestLayout.vue'
-
-const loading = ref( false );
-
-function socialLogin(provider) {
-  loading.value = true
-  window.location.href = route('social.login', provider)
-}
-
-defineProps({
-  errors: Object,
-  status: String,
-})
-
-const form = useForm({
-  email: '',
-  password: '',
-  remember: false,
-})
-
-const submit = () => {
-  form.post('/login', {
-    onFinish: () => form.reset('password'),
-  })
-}
-</script>
