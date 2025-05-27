@@ -2,6 +2,7 @@
 import { useForm } from '@inertiajs/vue3'
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import GuestLayout from '@/Layouts/GuestLayout.vue'
+import AppLayout from '@/Layouts/AppLayout.vue'
 
 defineProps({
   errors: Object,
@@ -24,6 +25,7 @@ const submit = () => {
 
 <template>
   <Head title="Register" />
+  <AppLayout />
   <GuestLayout title="Create an Account">
     <form @submit.prevent="submit" class="space-y-6">
       <!-- Name Field -->

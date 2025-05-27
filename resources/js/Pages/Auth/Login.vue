@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useForm } from '@inertiajs/vue3'
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import AuthenticatedLayout from '@/Layouts/GuestLayout.vue'
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 const loading = ref( false );
 
@@ -31,6 +32,7 @@ const submit = () => {
 
 <template>
   <Head title="Login" />
+  <AppLayout />
   <AuthenticatedLayout title="Sign In" subtitle="Welcome back! Please sign in to your account">
     <form @submit.prevent="submit" class="space-y-6">
       <!-- Email Field -->
