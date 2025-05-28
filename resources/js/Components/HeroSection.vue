@@ -170,30 +170,120 @@
               v-if="isCompleted"
               class="absolute inset-0 bg-gradient-to-r from-green-500/90 to-blue-500/90 backdrop-blur-xl rounded-3xl flex items-center justify-center animate-fade-in"
             >
-              <div class="text-center text-white transform animate-bounce-in">
-                <div class="text-6xl mb-4">🎉</div>
-                <h3 class="text-2xl font-bold mb-2">Congratulations!</h3>
-                <p class="text-lg mb-4">You've completed the typing test!</p>
-                <div class="flex space-x-6 mb-6">
-                  <div class="text-center">
-                    <div class="text-2xl font-bold text-yellow-300">{{ wpm }}</div>
-                    <div class="text-sm">WPM</div>
-                  </div>
-                  <div class="text-center">
-                    <div class="text-2xl font-bold text-green-300">{{ accuracy }}%</div>
-                    <div class="text-sm">Accuracy</div>
-                  </div>
-                  <div class="text-center">
-                    <div class="text-2xl font-bold text-blue-300">{{ formatTime(timeElapsed) }}</div>
-                    <div class="text-sm">Time</div>
-                  </div>
-                </div>
+            <div>
+                <!-- Trigger Button -->
                 <button 
-                  @click="resetTypingTest"
-                  class="px-6 py-3 bg-white text-gray-800 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-300"
+                  @click="openModal"
+                  class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
-                  Try Again
+                  <span class="flex items-center gap-2">
+                    <SmileOutlined />
+                    Open Notification Modal
+                  </span>
                 </button>
+
+                <!-- Modern Modal Overlay -->
+                <Teleport to="body">
+                  <Transition
+                    enter-active-class="transition-all duration-300 ease-out"
+                    enter-from-class="opacity-0"
+                    enter-to-class="opacity-100"
+                    leave-active-class="transition-all duration-300 ease-in"
+                    leave-from-class="opacity-100"
+                    leave-to-class="opacity-0"
+                  >
+                    <div 
+                      v-if="isModalOpen"
+                      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+                      @click="closeModal"
+                    >
+                      <!-- Backdrop with blur effect -->
+                      <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
+                      
+                      <!-- Modal Container -->
+                      <Transition
+                        enter-active-class="transition-all duration-500 ease-out"
+                        enter-from-class="opacity-0 scale-75 translate-y-8"
+                        enter-to-class="opacity-100 scale-100 translate-y-0"
+                        leave-active-class="transition-all duration-300 ease-in"
+                        leave-from-class="opacity-100 scale-100 translate-y-0"
+                        leave-to-class="opacity-0 scale-75 translate-y-8"
+                      >
+                        <div 
+                          v-if="isModalOpen"
+                          class="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden"
+                          @click.stop
+                        >
+                          <!-- Gradient Border Effect -->
+                          <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl p-[2px]">
+                            <div class="bg-white dark:bg-gray-800 rounded-3xl h-full w-full"></div>
+                          </div>
+                          
+                          <!-- Modal Content -->
+                          <div class="relative z-10 p-8">
+                            <!-- Header with Icon -->
+                            <div class="flex items-center gap-4 mb-6">
+                              <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                <SmileOutlined class="text-white text-xl animate-bounce" />
+                              </div>
+                              <h3 class="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                                Success Notification
+                              </h3>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-8">
+                              <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                                This is your modern notification modal with beautiful animations and glassmorphism effects. The content flows naturally with smooth transitions.
+                              </p>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="flex gap-3 justify-end">
+                              <button
+                                @click="closeModal"
+                                class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200"
+                              >
+                                Dismiss
+                              </button>
+                              <button
+                                @click="handleAction"
+                                class="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-xl hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                              >
+                                Take Action
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Completion Animation Overlay -->
+                          <Transition
+                            enter-active-class="transition-all duration-500 ease-out"
+                            enter-from-class="opacity-0 scale-95"
+                            enter-to-class="opacity-100 scale-100"
+                            leave-active-class="transition-all duration-300 ease-in"
+                            leave-from-class="opacity-100 scale-100"
+                            leave-to-class="opacity-0 scale-95"
+                          >
+                            <div 
+                              v-if="isCompleted"
+                              class="absolute inset-0 bg-gradient-to-r from-green-500/95 to-blue-500/95 backdrop-blur-xl rounded-3xl flex items-center justify-center z-20"
+                            >
+                              <div class="text-center text-white">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center animate-pulse">
+                                  <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                  </svg>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2">Action Completed!</h4>
+                                <p class="text-white/80">Processing your request...</p>
+                              </div>
+                            </div>
+                          </Transition>
+                        </div>
+                      </Transition>
+                    </div>
+                  </Transition>
+                </Teleport>
               </div>
             </div>
           </div>
@@ -276,8 +366,36 @@
 
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed , nextTick} from 'vue'
+import { SmileOutlined } from '@ant-design/icons-vue';
 
+const isModalOpen = ref(false);
+const isCompleted = ref(false);
+
+const openModal = () => {
+  isModalOpen.value = true;
+};
+
+const closeModal = () => {
+  if (isCompleted.value) {
+    isCompleted.value = false;
+    // Small delay to let completion animation fade out
+    setTimeout(() => {
+      isModalOpen.value = false;
+    }, 300);
+  } else {
+    isModalOpen.value = false;
+  }
+};
+
+const handleAction = async () => {
+  isCompleted.value = true;
+  
+  // Auto close after showing completion
+  setTimeout(() => {
+    closeModal();
+  }, 2500);
+};
 // Enhanced typing animation words
 const words = ['Typing Speed', 'Accuracy', 'Productivity', 'Efficiency', 'Skills', 'Performance', 'Mastery']
 const currentWord = ref('')
@@ -305,7 +423,7 @@ const wpm = ref(0)
 const accuracy = ref(100)
 const startTime = ref(null)
 const timeElapsed = ref(0)
-const isCompleted = ref(false)
+// const isCompleted = ref(false)
 const inputFocused = ref(false)
 const isAutoTyping = ref(false)
 
@@ -630,4 +748,28 @@ onUnmounted(() => {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
+        /* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+/* Glassmorphism effect enhancement */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+}
 </style>
