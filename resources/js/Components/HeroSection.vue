@@ -75,7 +75,7 @@
 
         <!-- Enhanced Interactive Demo Typing Box -->
         <div class="mb-12 max-w-4xl mx-auto transition-all duration-500">
-          <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl hover:shadow-purple-500/25 transition-shadow duration-500 relative overflow-hidden group">
+          <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/25 transition-shadow duration-500 relative overflow-hidden group">
             <!-- Animated Border Effect -->
             <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
             
@@ -154,13 +154,13 @@
                 <button
                   @click="startAutoDemo"
                   :disabled="isAutoTyping"
-                  class="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                  class="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 cursor-pointer"
                 >
-                  <svg v-if="!isAutoTyping" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg v-if="!isAutoTyping" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                   </svg>
                   <div v-else class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  <span>{{ isAutoTyping ? 'Auto Typing...' : '🤖 Watch Auto Demo' }}</span>
+                  <span class="text-white">{{ isAutoTyping ? 'Auto Typing...' : '🤖 Watch Auto Demo' }}</span>
                 </button>
               </div>
             </div>
@@ -170,121 +170,6 @@
               v-if="isCompleted"
               class="absolute inset-0 bg-gradient-to-r from-green-500/90 to-blue-500/90 backdrop-blur-xl rounded-3xl flex items-center justify-center animate-fade-in"
             >
-            <div>
-                <!-- Trigger Button -->
-                <button 
-                  @click="openModal"
-                  class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                >
-                  <span class="flex items-center gap-2">
-                    <SmileOutlined />
-                    Open Notification Modal
-                  </span>
-                </button>
-
-                <!-- Modern Modal Overlay -->
-                <Teleport to="body">
-                  <Transition
-                    enter-active-class="transition-all duration-300 ease-out"
-                    enter-from-class="opacity-0"
-                    enter-to-class="opacity-100"
-                    leave-active-class="transition-all duration-300 ease-in"
-                    leave-from-class="opacity-100"
-                    leave-to-class="opacity-0"
-                  >
-                    <div 
-                      v-if="isModalOpen"
-                      class="fixed inset-0 z-50 flex items-center justify-center p-4"
-                      @click="closeModal"
-                    >
-                      <!-- Backdrop with blur effect -->
-                      <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
-                      
-                      <!-- Modal Container -->
-                      <Transition
-                        enter-active-class="transition-all duration-500 ease-out"
-                        enter-from-class="opacity-0 scale-75 translate-y-8"
-                        enter-to-class="opacity-100 scale-100 translate-y-0"
-                        leave-active-class="transition-all duration-300 ease-in"
-                        leave-from-class="opacity-100 scale-100 translate-y-0"
-                        leave-to-class="opacity-0 scale-75 translate-y-8"
-                      >
-                        <div 
-                          v-if="isModalOpen"
-                          class="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden"
-                          @click.stop
-                        >
-                          <!-- Gradient Border Effect -->
-                          <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl p-[2px]">
-                            <div class="bg-white dark:bg-gray-800 rounded-3xl h-full w-full"></div>
-                          </div>
-                          
-                          <!-- Modal Content -->
-                          <div class="relative z-10 p-8">
-                            <!-- Header with Icon -->
-                            <div class="flex items-center gap-4 mb-6">
-                              <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                                <SmileOutlined class="text-white text-xl animate-bounce" />
-                              </div>
-                              <h3 class="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                                Success Notification
-                              </h3>
-                            </div>
-
-                            <!-- Description -->
-                            <div class="mb-8">
-                              <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                                This is your modern notification modal with beautiful animations and glassmorphism effects. The content flows naturally with smooth transitions.
-                              </p>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="flex gap-3 justify-end">
-                              <button
-                                @click="closeModal"
-                                class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200"
-                              >
-                                Dismiss
-                              </button>
-                              <button
-                                @click="handleAction"
-                                class="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-xl hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                              >
-                                Take Action
-                              </button>
-                            </div>
-                          </div>
-
-                          <!-- Completion Animation Overlay -->
-                          <Transition
-                            enter-active-class="transition-all duration-500 ease-out"
-                            enter-from-class="opacity-0 scale-95"
-                            enter-to-class="opacity-100 scale-100"
-                            leave-active-class="transition-all duration-300 ease-in"
-                            leave-from-class="opacity-100 scale-100"
-                            leave-to-class="opacity-0 scale-95"
-                          >
-                            <div 
-                              v-if="isCompleted"
-                              class="absolute inset-0 bg-gradient-to-r from-green-500/95 to-blue-500/95 backdrop-blur-xl rounded-3xl flex items-center justify-center z-20"
-                            >
-                              <div class="text-center text-white">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center animate-pulse">
-                                  <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                  </svg>
-                                </div>
-                                <h4 class="text-xl font-semibold mb-2">Action Completed!</h4>
-                                <p class="text-white/80">Processing your request...</p>
-                              </div>
-                            </div>
-                          </Transition>
-                        </div>
-                      </Transition>
-                    </div>
-                  </Transition>
-                </Teleport>
-              </div>
             </div>
           </div>
         </div>
@@ -293,7 +178,7 @@
         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 transform animate-fade-in-up" style="animation-delay: 1s;">
           <Link 
             :href="route('register')"
-            class="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full text-white font-semibold text-lg shadow-2xl hover:shadow-purple-500/50 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 overflow-hidden"
+            class="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full text-white font-semibold text-lg shadow-2xl hover:shadow-purple-500/50 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
           >
             <span class="relative z-10 flex items-center space-x-2">
               <span>Start Your Journey</span>
@@ -307,7 +192,7 @@
           
           <button 
             @click="playDemo"
-            class="group flex items-center space-x-3 px-8 py-4 border-2 border-white/30 rounded-full text-white font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 backdrop-blur-sm"
+            class="group flex items-center space-x-3 px-8 py-4 border-1 border-white/30 rounded-full text-white font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-500 cursor-pointer hover:-translate-y-2 backdrop-blur-sm"
           >
             <svg class="w-6 h-6 group-hover:animate-spin transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
@@ -367,7 +252,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { ref, onMounted, onUnmounted, computed , nextTick} from 'vue'
-import { SmileOutlined } from '@ant-design/icons-vue';
 
 const isModalOpen = ref(false);
 const isCompleted = ref(false);
@@ -379,7 +263,6 @@ const openModal = () => {
 const closeModal = () => {
   if (isCompleted.value) {
     isCompleted.value = false;
-    // Small delay to let completion animation fade out
     setTimeout(() => {
       isModalOpen.value = false;
     }, 300);
