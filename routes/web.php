@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 })->name('home');
+
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/blog', 'index')->name('blog.index');
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

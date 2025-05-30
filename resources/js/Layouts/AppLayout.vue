@@ -1,6 +1,6 @@
 <template>
-  <header class="abosolute shadow-md bg-gradient-to-br sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <header class="shadow-md bg-white bg-gradient-to-br sticky top-0 z-50">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo Section -->
         <div class="flex items-center space-x-2">
@@ -25,11 +25,11 @@
           </Link>
           
           <Link 
-            href="#" 
+            :href="route('blog.index')" 
             class="text-blue-400 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1"
           >
             <InfoCircleOutlined class="text-lg" />
-            <span>About</span>
+            <span>Blog</span>
           </Link>
           
           <Link 
@@ -136,7 +136,7 @@
           @click="mobileMenuOpen = false"
         >
           <InfoCircleOutlined />
-          <span>About</span>
+          <span>Blog</span>
         </Link>
         
         <Link 

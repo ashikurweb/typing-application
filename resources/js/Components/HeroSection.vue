@@ -1,8 +1,5 @@
 <template>
   <section class="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
-    <!-- Enhanced Animated Background Elements -->
-    <AppLayout />
-    
     <!-- Dynamic Background Particles -->
     <div class="absolute inset-0 pointer-events-none">
       <!-- Floating Particles with Enhanced Animation -->
